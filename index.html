@@ -1,0 +1,83 @@
+<html ng-app="myApp">
+
+  <head>
+   <link data-require="bootstrap@*" data-semver="3.3.0" rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link data-require="bootstrap-glyphicons@*" data-semver="3.2.1" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/img/glyphicons-halflings.png" />
+    <link data-require="angular-material@*" data-semver="1.1.0-rc2" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css" />
+    <script data-require="angular-material@*" data-semver="1.1.0-rc2" src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script data-require="bootstrap@*" data-semver="3.3.0" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script data-require="jquery@1.11.0" data-semver="1.11.0" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script data-require="angularjs@1.5.5" data-semver="1.5.5" src="https://code.angularjs.org/1.5.5/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
+    <script src="http://code.angularjs.org/1.2.4/angular-route.js"></script>
+    <script data-require="angular-animate@1.5.3" data-semver="1.5.3" src="https://code.angularjs.org/1.5.3/angular-animate.js"></script>
+    <script data-require="angular-aria@1.5.3" data-semver="1.5.3" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.4/angular-route.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-controller="myCtrl">
+    <div class="container-fluid bg-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>
+              <span class="label label-warning" id="qid">{{activeQuestion+1}}</span>
+
+  {{allQuestions[activeQuestion].question}}</h3>
+          </div>
+          <div class="modal-body">
+            <div class="col-xs-3 col-xs-offset-5">
+              <div id="loadbar" style="display: none;">
+                <div class="blockG" id="rotateG_01"></div>
+                <div class="blockG" id="rotateG_02"></div>
+                <div class="blockG" id="rotateG_03"></div>
+                <div class="blockG" id="rotateG_04"></div>
+                <div class="blockG" id="rotateG_05"></div>
+                <div class="blockG" id="rotateG_06"></div>
+                <div class="blockG" id="rotateG_07"></div>
+                <div class="blockG" id="rotateG_08"></div>
+              </div>
+            </div>
+            <div class="quiz" id="quiz" data-toggle="buttons" ng-repeat="option in allQuestions[activeQuestion].choices track by $index">
+              <label class="btn btn-lg btn-primary btn-block">
+                <span class="btn-label">
+                  <i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+                <input type="radio" name="q_answer" ng-click="saveOption($index,allQuestions[activeQuestion].correctAnswer)" />
+{{option}}</label>
+              <!--<label class="element-animation2 btn btn-lg btn-primary btn-block">
+              <span class="btn-label">
+                  <i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+              <input type="radio" name="q_answer" value="2" /> 2 Two</label>
+            <label class="element-animation3 btn btn-lg btn-primary btn-block">
+              <span class="btn-label">
+                  <i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+              <input type="radio" name="q_answer" value="3" /> 3 Three</label>
+            <label class="element-animation4 btn btn-lg btn-primary btn-block">
+              <span class="btn-label">
+                  <i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+              <input type="radio" name="q_answer" value="4" /> 4 Four</label>-->
+            </div>
+          </div>
+          <div class="modal-footer text-muted">
+            <span id="answer">
+              <button class="btn btn-warning" ng-click="questionAnswered()" ng-disabled="ansNotCorrect" ng-show="!ifEnd">Continue</button>
+            </span>
+            <span id="answer">
+              <button class="btn btn-warning" ng-show="ifEnd" ng-click="exit()">Close</button>
+            </span>
+            <span id="answer">
+              <button class="btn btn-warning" ng-click="restart()" ng-show="ifEnd">Re-start</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
